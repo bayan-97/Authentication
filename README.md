@@ -4,7 +4,7 @@ LAB - 9
 
 
 Author: bayan alalem
-ci/cd:[ci/cd ](https://github.com/bayan-97/api-server/actions)
+ci/cd:[ci/cd ](https://github.com/bayan-97/Authentication/actions)
 Setup
 `.env `requirements
 PORT - Port Number
@@ -21,7 +21,7 @@ Prepare the server.js for modularization.
 3- app.use() each them in your app so that your routes will respond
 4- Write new routing modules for your server
 
-### routes/categories.js and routes/product.js
+### routes.js
 
 1- Create a router module for each of your data types
 In each
@@ -41,7 +41,7 @@ Work in lib/models/categories and lib/models/products
 
 For each, create both a schema and collection file
 
-. categories.schema.js and categories.collection.js
+user.schema.js and user.collection.js
 
 #The schema file should define your data model as a Mongoose schema
 The collection file should be a class that:
@@ -49,133 +49,35 @@ Imports the schema
 
 Exports a class with CRUD methods, coded to work with your schema
 read() performs a find() query in your schema
-create() performs a save() query in your schema for a new record
-update() performs a findOneByIdAndUpdate() operation in your schema for an existing record
-delete() performs a findOneByIdAndDelete() in your schema for a new record
+generateToken() to generate a Token following a valid login
+authenticateBasic() o authenticate a user using the hashed password
+save() we save a record Hash the plain text password given before you save a user to the database
 **refactores our code**
 ## Running the app
 
-`npm start`
+`node index.js`
 
-Endpoint:`/products`
-
-method:post
-Returns Object
-
-`{`
-`  "name": "john-api-server.demo.herokuapp.com",`
-`  "catogry": "running",`
-`  "description": "color of skirt blue",`
- ` "id":1`
-`}`
-Endpoint:`/products`
-method:get
-Returns Object
-
-`{`
-    `"count": 1,`
-   ` "results": {`
-       ` "categories": [`
-           ` {`
-                `"name": "bayan3",`
-               ` "display_name": "display_name,description",`
-                `"description": "DD",`
-               ` "id": 1`
-            `}`
-       ` ],`
-        `"products": [`
-           `  {`
-               ` "name": "bayan3",`
-                `"catogery": "display_name,description",`
-               ` "description": "DD",`
-               ` "id": 1`
-           ` }`
-        `]`
-    `}`
-`}`
-
-Endpoint:`/products/1`
-method:put
-Returns Object
-
-`{`
-  `"name": "john-api-server.demo.herokuapp.com",`
- ` "catogry": "running",`
- ` "description": "color of skirt orange",`
- ` "id":1`
-`}`
-
-Endpoint:`/products/1`
-method:`delete`
-Returns Object
-
-`{`
-`}`
-
-
-Endpoint:`/categories`
+Endpoint:`/signup`
 
 method:post
-Returns Object
+Returns token
 
 `{`
-`  "name": "john-api-server.demo.herokuapp.com",`
-`  "catogry": "running",`
-`  "description": "color of skirt blue",`
- ` "id":1`
+`  "user": "john-api-server.demo.herokuapp.com",`
+`  "password": "running",`
+`  "
 `}`
-Endpoint:`/categories`
+Endpoint:`/signin`
 method:get
-Returns Object
+Returns:token and user
 
-`{`
-    `"count": 1,`
-   ` "results": {`
-       ` "categories": [`
-           ` {`
-                `"name": "bayan3",`
-               ` "display_name": "display_name,description",`
-                `"description": "DD",`
-               ` "id": 1`
-            `}`
-       ` ],`
-        `"categories": [`
-           `  {`
-               ` "name": "bayan3",`
-                `"catogery": "display_name,description",`
-               ` "description": "DD",`
-               ` "id": 1`
-           ` }`
-        `]`
-    `}`
-`}`
 
-Endpoint:`/categories/1`
-method:put
-Returns Object
-    ` {`
-                `"name": "bayan3",`
-               ` "display_name": "display_name,description",`
-                `"description": "DD",`
-               ` "id": 1`
-            `}`
 
-Endpoint:`/categories/1`
-method:`delete`
-Returns Object
 
-`{`
-`}`
 
-Tests
-Unit Tests: npm run test
-![](lab8testCURD.PNG)
-![](lab8testCurd1.PNG)
-![](lab8testserver.PNG)
-![](lab73.PNG)
 
 
 
 
 UML Diagram
-![](lab8url.PNG)
+![](lab11ui.PNG)
