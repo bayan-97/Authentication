@@ -5,11 +5,11 @@ const morgan = require('morgan');
 const cors = require('cors');
 const users = require('./model/Users/users-collection.js');
 const userRouter = require('./router.js');
+const PORT = process.env.PORT || 3000;
 require('dotenv').config()
 
+app.use(express.static('./public'));
 
-
-const PORT = process.env.PORT || 3000;
 
 
 app.use(express.json());
@@ -18,6 +18,7 @@ app.use(cors());
 
 
 app.use('/', userRouter);
+
 
 // app.post('/signup', (req, res) => {
 //     console.log(req.body)

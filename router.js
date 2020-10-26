@@ -3,6 +3,8 @@
 const express = require('express');
 const router = express.Router();
 const basicAuth = require('./midleware/basicAuth.js');
+const oauth = require('./midleware/aother.js');
+
 const users = require('./model/Users/users-collection.js');
 
 router.post('/signup',signupHandler);
@@ -28,6 +30,9 @@ router.get('/users', basicAuth, (req, res) => {
 console.log(data)
         res.json(data);
     })
+});
+router.get('/oauth', oauth, (req, res) => {
+  res.json({ token: req.token });
 });
 
 module.exports = router; 
