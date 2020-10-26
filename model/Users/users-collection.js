@@ -45,8 +45,11 @@ class Usercat {
     const token = jwt.sign({ username: user.username }, SECRET);
     return token;
   };
- list =async () =>  await this.model.find({});;
-
+// list = async () =>  await this.model.find({});
+async list() {
+ 
+  return await this.model.find({});
+};
 
 }
 
