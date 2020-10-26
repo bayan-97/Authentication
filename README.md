@@ -1,6 +1,6 @@
 # Authentication
 
-LAB - 9
+LAB - 12
 
 
 Author: bayan alalem
@@ -20,6 +20,8 @@ Prepare the server.js for modularization.
 2- Require  router modules 
 3- app.use() each them in your app so that your routes will respond
 4- Write new routing modules for your server
+
+### index.html
 
 ### routes.js
 
@@ -52,6 +54,14 @@ read() performs a find() query in your schema
 generateToken() to generate a Token following a valid login
 authenticateBasic() o authenticate a user using the hashed password
 save() we save a record Hash the plain text password given before you save a user to the database
+## OAuth middleware
+Exchange the code received on the initial request for a token from the Provider
+Use the token to retrieve the user’s account information from the Provider
+Create/Retrieve an account from our Mongo users database matching the user’s account (email or username) using the users model
+Generate a token using the users model
+Add the token and the user record to the request object.
+
+
 **refactores our code**
 ## Running the app
 
@@ -72,7 +82,9 @@ method:get
 Returns:token and user
 
 
-
+Endpoint:`/oauth`
+method:get
+Returns:token 
 
 
 
@@ -80,4 +92,4 @@ Returns:token and user
 
 
 UML Diagram
-![](lab11ui.PNG)
+![](lab12ui.PNG)
