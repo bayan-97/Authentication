@@ -4,7 +4,7 @@ const app = express();
 const morgan = require('morgan');
 const cors = require('cors');
 const users = require('./model/Users/users-collection.js');
-const userRouter = require('./router.js');
+const userRouter = require('./extra-routes.js');
 const PORT = process.env.PORT || 3000;
 require('dotenv').config()
 
@@ -18,7 +18,9 @@ app.use(cors());
 
 
 app.use('/', userRouter);
-
+// app.get('/user', bearer, (req, res) => {
+//   res.json(req.user);
+// });
 
 // app.post('/signup', (req, res) => {
 //     console.log(req.body)

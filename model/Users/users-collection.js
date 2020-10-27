@@ -50,16 +50,25 @@ async list() {
  
   return await this.model.find({});
 };
+async  authenticateToken(token){
+      try {
+        const tokenObject = jwt.verify(token, SECRET);
+        console.log('TOKEN OBJECT', tokenObject);
+        if (this.read(tokenObject.username)) {
+          return Promise.resolve(tokenObject);
+        } else {
+          return Promise.reject();
+        }
+      } catch (e) {
+        return Promise.reject(e.message);
+      }
+    }
 
 }
-
 class User extends Usercat{
     constructor() {
       super(Usermodel);
-    }
-  
-   
-  }
+    }}
  
 
 
