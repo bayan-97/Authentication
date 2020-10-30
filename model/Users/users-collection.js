@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const roles = {
   user: ['read'],
+  Writer:['read', 'create'],
   editor: ['read', 'create', 'update'],
   admin: ['read', 'create', 'update', 'delete'],
 };
@@ -29,7 +30,6 @@ class Usercat {
         newRecord.password = await bcrypt.hash(newRecord.password, 5);
          return await newRecord.save();
 
-        //   this.model.find({ username }) = newRecord;
         
         
       }

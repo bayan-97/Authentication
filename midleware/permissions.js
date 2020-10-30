@@ -15,15 +15,6 @@ module.exports = (capability) => {
       .catch(() => {
         next('Access Denied');
       });
-    //   try {
-    //     if (req.user.capabilities.includes(capability)) {
-    //       next();
-    //     } else {
-    //       next('Access Denied');
-    //     }
-    //   } catch (e) {
-    //     next(e.message);
-    //   }
-    // };
+
   };
 }
