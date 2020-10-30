@@ -5,6 +5,8 @@ const router = express.Router();
 const basicAuth = require('./midleware/basicAuth.js');
 const oauth = require('./midleware/aother.js');
 const bearer=require('./midleware/bearer-auth.js')
+const permissions=require('./midleware/permissions.js')
+
 const users = require('./model/Users/users-collection.js');
 
 router.post('/signup',signupHandler);
@@ -36,6 +38,19 @@ router.get('/oauth', oauth, (req, res) => {
 });
 router.get('/secret', bearer, (req, res) => {
   res.json(req.user);
+});
+
+router.get('/read', bearer, permissions('read'), (req, res) => {
+  res.status(201).send('OK!');
+});
+router.post('/add', bearer, permissions('create'), (req, res) => {
+  res.send('OK!');
+});
+router.put('/change', bearer, permissions('update'), (req, res) => {
+  res.send('OK!');
+});
+router.delete('/remove', bearer, permissions('delete'), (req, res) => {
+  res.send('OK!');
 });
 
 module.exports = router; 

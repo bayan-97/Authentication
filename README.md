@@ -51,7 +51,7 @@ save() we save a record Hash the plain text password given before you save a use
 Use the JWT library to validate it with the secret
 If it’s valid look up the user by the id in the token and return it
 Otherwise, return an error
-## bearer middleware
+## premissions middleware
 This middleware will need to do the following:
 Read the value of the Bearer Token in the authorization header
 Invoke the User model to validate the token
@@ -88,10 +88,17 @@ Returns:token
 Endpoint:`/secret`
 method:get
 Returns:user 
+Endpoint:`/add`
+method:put
+Returns:user Endpoint:`/remove`
+method:delete
+Returns:user Endpoint:`/read`
+method:get
+Returns:ok 
 
 test
 ![](lab13res.PNG)
 
 
 UML Diagram
-![](lab13ui.PNG)
+![](lab14ui.PNG)
