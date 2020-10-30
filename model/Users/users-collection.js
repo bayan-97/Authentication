@@ -48,7 +48,11 @@ class Usercat {
   };
   
  generateToken(user) {
-    const token = jwt.sign({ username: user.username ,capabilities: roles[user.role]}, SECRET);
+
+    const token = jwt.sign({ username: user.username, }, SECRET,{
+      expiresIn: '18000' 
+    });
+  
     return token;
   };
   can(permission,user){
