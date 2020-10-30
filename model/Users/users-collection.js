@@ -6,7 +6,7 @@ const roles = {
   user: ['read'],
   Writer:['read', 'create'],
   editor: ['read', 'create', 'update'],
-  admin: ['read', 'create', 'update', 'delete'],
+  admin: ['read', 'create', 'update', 'delete']
 };
 const SECRET = process.env.SECRET || 'mysecret';
 class Usercat {
@@ -14,6 +14,8 @@ class Usercat {
     this.model = model;
   }
   read(username) {
+  console.log("vtokenvuse1rusername",username)
+
     if ( username !== undefined) {
       return this.model.findOne({ username });
     }else {
@@ -48,15 +50,23 @@ class Usercat {
   };
   
  generateToken(user) {
+  console.log("vtokenvuser",user)
 
-    const token = jwt.sign({ username: user.username, }, SECRET,{
-      expiresIn: '18000' 
+    const token = jwt.sign({  username: user.username, capabilities: roles[user.role] }, SECRET,{
+      expiresIn: '90000' 
     });
+  console.log("vtokenvuser",token)
+
   
     return token;
   };
   can(permission,user){
+  console.log("vtokenvuse1r",user)
+  console.log("vtokenvuser2",permission)
+
       try {
+  console.log("vtokenvggg",user.capabilities)
+
         if (user.capabilities.includes(permission)) {
           return Promise.resolve(true);
         } else {
@@ -72,10 +82,12 @@ async list() {
  
   return await this.model.find({});
 };
-async  authenticateToken(token){
+async  authenticateToken(token){  
       try {
         const tokenObject = jwt.verify(token, SECRET);
-        console.log('TOKEN OBJECT', tokenObject);
+        console.log('TOKEN OBJECwT', tokenObject);
+        // console.log('TOKEN OBJECsT', this.read(tokenObject.username));
+
         if (this.read(tokenObject.username)) {
           return Promise.resolve(tokenObject);
         } else {

@@ -21,6 +21,10 @@ describe(' user  Model', () => {
 
 
     console.log('recored', await users.generateToken(record));
+    console.log('recored222',recoed3);
+
+ 
+
     
     expect(recoed2).not.toEqual(undefined);
     expect(recoed3.username).toEqual('bayan34');
